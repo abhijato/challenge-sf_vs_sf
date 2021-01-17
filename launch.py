@@ -37,3 +37,6 @@ if __name__=="__main__":
     Game1=threading.Thread(target=PlayGame,args=())
     Game2=threading.Thread(target=PlayGame,args=())
     Game3=threading.Thread(target=PlayGame,args=())
+    Game1.start()
+    Game2.start()
+    Game3.start()
