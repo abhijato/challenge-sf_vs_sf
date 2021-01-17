@@ -17,6 +17,7 @@ def PlayGame():
         game.headers["Site"]="Heroku's server"
         game.headers["White"]="Stockfish"
         game.headers["Black"]="Stockfish"
+        game.headers["Result"]=board.result()
         exporter = pgn.StringExporter(headers=True, variations=True, comments=True)
         pgn_string = game.accept(exporter)
         print(pgn_string)
