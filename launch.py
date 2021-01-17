@@ -2,6 +2,7 @@ import chess
 from chess import engine
 from chess import pgn
 import smtplib, ssl
+import threading
 
 def PlayGame():
     eng = engine.SimpleEngine.popen_uci("engines/sf")
@@ -9,9 +10,13 @@ def PlayGame():
         board = chess.Board()
         game = chess.pgn.Game()
         while not board.is_game_over():
-            result = eng.play(board, engine.Limit(time=0.1))
+            result = eng.play(board, engine.Limit(time=15))
             board.push(result.move)
         game.add_line(board.move_stack)
+        game.headers["Event"]="Stockfish VS Stockfish(15s)"
+        game.headers["Site"]="Heroku's server"
+        game.headers["White"]="Stockfish"
+        game.headers["Black"]="Stockfish"
         exporter = pgn.StringExporter(headers=True, variations=True, comments=True)
         pgn_string = game.accept(exporter)
         print(pgn_string)
@@ -27,5 +32,8 @@ def PlayGame():
             server.login(sender_email, password)
             server.sendmail(sender_email, receiver_email, pgn_string)
 
+
 if __name__=="__main__":
-    PlayGame()
+    Game1=threading.Thread(target=PlayGame,args=())
+    Game2=threading.Thread(target=PlayGame,args=())
+    Game3=threading.Thread(target=PlayGame,args=())
