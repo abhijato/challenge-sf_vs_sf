@@ -12,7 +12,7 @@ def PlayGame():
         while not board.is_game_over():
             result = eng.play(board, engine.Limit(time=15))
             board.push(result.move)
-        if not board.result=='1/2-1/2':
+        if not board.result()=='1/2-1/2':
             game.add_line(board.move_stack)
             game.headers["Event"]="Stockfish VS Stockfish(15s)"
             game.headers["Site"]="Heroku's server"
