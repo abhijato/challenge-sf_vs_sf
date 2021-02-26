@@ -26,7 +26,7 @@ def PlayGame():
             smtp_server = "smtp.gmail.com"
             sender_email = "lichessbotall@gmail.com"  # Enter your address
             receiver_email = "abhijato.chatterjee@gmail.com"  # Enter receiver address
-            password = "lichess bot api"
+            password = "lichess api token"
 
             context = ssl.create_default_context()
             with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
