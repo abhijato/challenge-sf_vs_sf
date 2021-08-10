@@ -16,8 +16,8 @@ def PlayGame():
             game.add_line(board.move_stack)
             game.headers["Event"]="Stockfish VS Stockfish(15s)"
             game.headers["Site"]="Heroku's server"
-            game.headers["White"]="Stockfish 12"
-            game.headers["Black"]="Stockfish 12"
+            game.headers["White"]="Stockfish 14"
+            game.headers["Black"]="Stockfish 14"
             game.headers["Result"]=board.result()
             exporter = pgn.StringExporter(headers=True, variations=True, comments=True)
             pgn_string = game.accept(exporter)
@@ -37,7 +37,5 @@ def PlayGame():
 if __name__=="__main__":
     Game1=threading.Thread(target=PlayGame,args=())
     Game2=threading.Thread(target=PlayGame,args=())
-    Game3=threading.Thread(target=PlayGame,args=())
     Game1.start()
     Game2.start()
-    Game3.start()
